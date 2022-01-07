@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Clock</title>
+  </head>
+  <body>
+    <!-- 整个钟表在网页中的位置 -->
+    <div class="clock">
+      <!-- 钟表表盘 -->
+      <div class="container">
+        <!-- 指针 -->
+        <div class="hand hour"></div>
+        <div class="hand min"></div>
+        <div class="hand second"></div>
+      </div>
+    </div>
+
+    <script>
+      // 养成习惯，先用(function(){})()把代码块扩起来。封装
+      (function () {
+        const hour = document.querySelector(".hour");
+        const min = document.querySelector(".min");
+        const second = document.querySelector(".second");
+
+        // 转动. 因为setClock使用了即刻函数包起来，所以不能再控制台直接调用
+        function setClock() {
+          const now = new Date();
+          const secondDeg = now.getSeconds() * 6;
+          const minDeg = now.getMinutes() * 6;
+          const hourDeg = now.getHours() * (360 / 12);
+
+          second.style.transform = `rotate(${secondDeg}deg)`;
+          min.style.transform = `rotate(${minDeg}deg)`;
+          hour.style.transform = `rotate(${hourDeg}deg)`;
+        }
+
+        setClock(); //因为使用了即刻函数，所以先初始化一次
+
+        // 计时器
+        setInterval(setClock, 1000);
+      })();
+    </script>
+  </body>
+</html>

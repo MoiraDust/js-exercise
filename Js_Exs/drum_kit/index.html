@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Drum Kit</title>
+  </head>
+  <body>
+    <div class="keys">
+      <div data-key="65" class="key">
+        <kbd>A</kbd><span class="sound">clap</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd><span class="sound">hihat</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd><span class="sound">kick</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd><span class="sound">openhat</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd><span class="sound">boom</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd><span class="sound">ride</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd><span class="sound">snare</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd><span class="sound">tom</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd><span class="sound">tink</span>
+      </div>
+    </div>
+
+    <audio data-key="65" src="../../assets/sounds/clap.wav"></audio>
+    <audio data-key="83" src="../../assets/sounds/hihat.wav"></audio>
+    <audio data-key="68" src="../../assets/sounds/kick.wav"></audio>
+    <audio data-key="70" src="../../assets/sounds/openhat.wav"></audio>
+    <audio data-key="71" src="../../assets/sounds/boom.wav"></audio>
+    <audio data-key="72" src="../../assets/sounds/ride.wav"></audio>
+    <audio data-key="74" src="../../assets/sounds/snare.wav"></audio>
+    <audio data-key="75" src="../../assets/sounds/tom.wav"></audio>
+    <audio data-key="76" src="../../assets/sounds/tink.wav"></audio>
+
+    <script>
+      function playSound(e) {
+        //控制台输出事件
+        //console.log(e);
+        var keyCode = e.keyCode;
+        //find the audio which data-key == keyCode
+        const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+        // find the pressed key to change the css. Tip: use .key
+        const pressedKey = document.querySelector(
+          `.key[data-key="${keyCode}"]`
+        );
+        //add css to the key
+        pressedKey.classList.add("playing"); //这里也可以用jQuery
+        //stop the function
+        if (!audio) {
+          return;
+        }
+        // 正常情况下，因为一个audio后面有blank，所以在按multiple times的时候会出错。每个按键只有按一次有效。所以需要rewind
+        audio.currentTime = 0; //rewind to the start
+        audio.play();
+      }
+      function removeTransition(e) {
+        // console.log(e);
+        if (e.propertyName !== "transform") return; // skip if no transition
+        // console.log(e.propertyName);
+        this.classList.remove("playing");
+      }
+      // 监听按钮事件.当按钮抬起的时候触发function
+      window.addEventListener("keydown", playSound);
+      // 列出所有的key的css
+      const keys = document.querySelectorAll(".key");
+      // 这里输出的结果是一个node list，而不是array，所以不能直接用addEventListener
+      keys.forEach((key) => {
+        //   监听到的事件为“transaction end的时候，remove”
+        key.addEventListener("transitionend", removeTransition);
+      });
+    </script>
+  </body>
+</html>

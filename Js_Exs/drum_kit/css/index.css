@@ -1,0 +1,44 @@
+body {
+  background-image: url("../../assets/img/bg.jpeg");
+  background-size: cover;
+}
+.keys {
+  width: 80%;
+  text-align: center;
+  padding-left: 11%;
+  padding-top: 25%;
+}
+.key {
+  /* 元素横向显示 */
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: 1rem, 0, 5rem;
+  /* 动画速度 */
+  transition: all 1.07s;
+  border: 2px solid black;
+  width: 7%;
+  height: 5rem;
+  text-align: center;
+  margin: 1rem;
+  color: antiquewhite;
+  /* 改变背景透明度写法，不会对DIV里面元素造成影响 */
+  background-color: rgba(71, 94, 89, 0.5);
+}
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 40px;
+}
+
+.sound {
+  text-align: center;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffc600;
+}

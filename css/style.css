@@ -1,0 +1,292 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#201317, #293841, #80afa3, #ded8c9);
+  position: relative;
+  overflow: hidden;
+}
+.moon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: inset 10px -10px rgba(255, 255, 255, 0.9);
+  top: 10%;
+  left: 20%;
+}
+.mountain {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 300px solid transparent;
+  border-left: 300px solid transparent;
+  border-bottom: 250px solid #1f2b33;
+  bottom: 50px;
+  left: -10%;
+  z-index: 1;
+}
+/* 后代选择器写法要注意 */
+.mountain.two {
+  border-bottom: 250px solid #1b2328;
+  bottom: 30px;
+  left: 0%;
+}
+.land {
+  width: 200%;
+  height: 200px;
+  position: absolute;
+  border-radius: 50%;
+  background: #192128;
+  left: -50%;
+  z-index: 2;
+  bottom: -100px;
+}
+h2 {
+  color: #ffff;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  right: 10%;
+  position: absolute;
+  top: 2%;
+}
+h2 span {
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+.house {
+  width: 200px;
+  height: 89px;
+  position: absolute;
+  right: 20%;
+  bottom: 32px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+}
+.roof1 {
+  position: absolute;
+  width: 140px;
+  height: 60px;
+  background: #100a0e;
+  transform: skew(-40deg, -8deg);
+  top: -60px;
+  right: 60px;
+}
+.wall1 {
+  background: #232e38;
+  height: 100%;
+  flex: 3;
+  transform: skew(0, -9deg);
+}
+.wall2 {
+  flex: 2;
+  background: #2f3c44;
+  height: 100%;
+  transform: skew(0, 14deg);
+}
+.attic {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 54px solid #2f3c44;
+  top: -53px;
+}
+/* 和前面的区分一下 */
+.wall1 .window {
+  width: 26px;
+  height: 26px;
+  background: #f5edae;
+  position: absolute;
+  left: 50%;
+  margin-top: 30px;
+  box-shadow: 0 0 10px #f5edae;
+}
+.wall1 .window:before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wall1 .window:after {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.roof2 {
+  width: 140px;
+  height: 70px;
+  position: absolute;
+  background: #100a0e;
+  border-right: 0;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.4);
+  transform: skew(40deg, -8deg);
+  top: -60px;
+  right: 6px;
+}
+.snow-box {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  animation: 12s snow_moving linear forwards infinite;
+  transform: translateY(-100%);
+}
+.snow-box:nth-of-type(2n) {
+  animation-delay: 6s;
+}
+@keyframes snow_moving {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+.snowflake {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: 5s flake_moving linear forwards infinite;
+}
+.snowflake:nth-of-type(2n) {
+  animation-delay: 2.5s;
+}
+@keyframes flake_moving {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(500%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+.smaller .snowflake {
+  width: 4px;
+  height: 4px;
+}
+.smallest .snowflake {
+  width: 2px;
+  height: 2px;
+}
+
+.btn {
+  position: absolute;
+  color: white;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  background-color: #ded8c9;
+  border-radius: 50px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  text-decoration: none;
+}
+.btn button {
+  background-color: transparent;
+  border: 0px;
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #232e38;
+}
+
+.box {
+  z-index: 1000;
+  width: 400px;
+  height: 400px;
+  background-color: #ded8c9;
+  position: relative;
+  top: 15%;
+  left: 40%;
+  border-radius: 25px;
+  visibility: hidden;
+}
+.box.active {
+  visibility: visible;
+}
+.box a {
+  text-decoration: none;
+  color: #100a0e;
+}
+#blur.active {
+  filter: blur(50px);
+  pointer-events: none;
+  user-select: none;
+}
+.left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 200px;
+  display: inline-block;
+  /* background-color: gray; */
+}
+.right {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 100px;
+  height: 200px;
+  /* background-color: gray; */
+}
+.middle {
+  position: absolute;
+  margin-left: 140px;
+  margin-right: 100px;
+  width: 100px;
+  height: 200px;
+  /* background-color: lightgray; */
+  top: 0;
+  height: 200px;
+}
+.box button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #333333;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}

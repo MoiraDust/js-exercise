@@ -1,0 +1,90 @@
+html {
+  background-image: url("../../assets/img/bg.jpeg");
+  background-size: 2000px;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 10px;
+}
+body {
+  font-size: 2rem;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.clock {
+  width: 30rem;
+  height: 30rem;
+  border: 10px solid white;
+  /* 圆形 */
+  border-radius: 50%;
+  margin: 50px auto;
+  position: relative;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-3px);
+}
+/* 圆点 */
+.container:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: aliceblue;
+}
+/* 这里的思路是，三根针分开做,默认直接是指向12点.
+before里面整个div就是很细小，这里的话是把针画在正方形div里面，
+转的时候整个div在转 */
+.hand {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.hour:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 15px;
+  height: 30%;
+  border-radius: 90%;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: #336699;
+}
+.min:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 10px;
+  height: 35%;
+  border-radius: 90%;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: #cccc99;
+}
+.second:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 5px;
+  height: 40%;
+  border-radius: 90%;
+  bottom: 50%;
+  left: 50%;
+  background-color: #003366;
+  /* 指针的根靠到圆点 */
+  transform: translate(-50%, 0);
+}
